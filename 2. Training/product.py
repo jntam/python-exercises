@@ -7,4 +7,6 @@ def mul(numbers: Iterable[int]):
         product *= number
     return product
 
+
 # print(mul([1,2,3]))
+
