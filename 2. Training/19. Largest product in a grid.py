@@ -1,32 +1,58 @@
 from typing import Iterable
 
 
-def up_to_down(row: int, col: int, matrix: Iterable[Iterable[int]]):
+def up_to_down(row: int, col: int, matrix: Iterable[Iterable[int]], number: int):
     product = 1
-    for i in range(4):
+    for i in range(number):
         product *= matrix[row + i][col]
     return product
 
 
-def left_to_right(row: int, col: int, matrix: Iterable[Iterable[int]]):
+def left_to_right(row: int, col: int, matrix: Iterable[Iterable[int]], number: int):
     product = 1
-    for i in range(4):
+    for i in range(number):
         product *= matrix[row][col + i]
     return product
 
 
-def left_to_right_diag(row: int, col: int, matrix: Iterable[Iterable[int]]):
+def left_to_right_diag(row: int, col: int, matrix: Iterable[Iterable[int]], number: int):
     product = 1
-    for i in range(4):
+    for i in range(number):
         product *= matrix[row + i][col + i]
     return product
 
 
-def right_to_left_diag(row: int, col: int, matrix: Iterable[Iterable[int]]):
+def right_to_left_diag(row: int, col: int, matrix: Iterable[Iterable[int]], number: int):
     product = 1
-    for i in range(4):
+    for i in range(number):
         product *= matrix[row + i][col - i]
     return product
+
+
+def largest_product(matrix: Iterable[Iterable[int]], number: int):
+    up_to_downs = []
+    left_to_rights = []
+    left_to_right_diags = []
+    right_to_left_diags = []
+
+    for row1 in range(len(matrix) - number + 1):
+        for col1 in range(len(matrix)):
+            up_to_downs.append(up_to_down(row1, col1, matrix, number))
+
+    for row2 in range(len(matrix) - number + 1):
+        for col2 in range(len(matrix) - number + 1):
+            left_to_rights.append(left_to_right(row2, col2, matrix, number))
+
+    for row3 in range(len(matrix) - number + 1):
+        for col3 in range(len(matrix) - number + 1):
+            left_to_right_diags.append(left_to_right_diag(row3, col3, matrix, number))
+
+    for row4 in range(len(matrix) - number + 1):
+        for col4 in range(number - 1, len(matrix)):
+            right_to_left_diags.append(right_to_left_diag(row4, col4, matrix, number))
+
+    largest = max(max(up_to_downs), max(left_to_rights), max(left_to_right_diags), max(right_to_left_diags))
+    return largest
 
 
 mat = [[8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8, ],
@@ -49,27 +75,5 @@ mat = [[8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8, 
        [20, 69, 36, 41, 72, 30, 23, 88, 34, 62, 99, 69, 82, 67, 59, 85, 74, 4, 36, 16, ],
        [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54, ],
        [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]]
-
-up_to_downs = []
-left_to_rights = []
-left_to_right_diags = []
-right_to_left_diags = []
-
-for row1 in range(len(mat)-3):
-    for col1 in range(len(mat)):
-        up_to_downs.append(up_to_down(row1, col1, mat))
-
-for row2 in range(len(mat)-3):
-    for col2 in range(len(mat)-3):
-        left_to_rights.append(left_to_right(row2, col2, mat))
-
-for row3 in range(len(mat)-3):
-    for col3 in range(len(mat)-3):
-        left_to_right_diags.append(left_to_right_diag(row3, col3, mat))
-
-for row4 in range(len(mat)-3):
-    for col4 in range(3, len(mat)):
-        right_to_left_diags.append(right_to_left_diag(row4, col4, mat))
-
-largest_product = max(max(up_to_downs), max(left_to_rights), max(left_to_right_diags), max(right_to_left_diags))
-print(largest_product)
+nums = 4  # 所需计算乘积的数字个数：nums <= 20
+print(largest_product(mat, nums))
