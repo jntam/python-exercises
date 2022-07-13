@@ -1,28 +1,28 @@
 from typing import Iterable
 
 
-def up_to_down(row: int, col: int, matrix: Iterable[int]):
+def up_to_down(row: int, col: int, matrix: Iterable[Iterable[int]]):
     product = 1
     for i in range(4):
         product *= matrix[row + i][col]
     return product
 
 
-def left_to_right(row: int, col: int, matrix: Iterable[int]):
+def left_to_right(row: int, col: int, matrix: Iterable[Iterable[int]]):
     product = 1
     for i in range(4):
         product *= matrix[row][col + i]
     return product
 
 
-def left_to_right_diag(row: int, col: int, matrix: Iterable[int]):
+def left_to_right_diag(row: int, col: int, matrix: Iterable[Iterable[int]]):
     product = 1
     for i in range(4):
         product *= matrix[row + i][col + i]
     return product
 
 
-def right_to_left_diag(row: int, col: int, matrix: Iterable[int]):
+def right_to_left_diag(row: int, col: int, matrix: Iterable[Iterable[int]]):
     product = 1
     for i in range(4):
         product *= matrix[row + i][col - i]
@@ -55,21 +55,21 @@ left_to_rights = []
 left_to_right_diags = []
 right_to_left_diags = []
 
-for m in range(17):
-    for n in range(20):
-        up_to_downs.append(up_to_down(m, n, mat))
+for row1 in range(len(mat)-3):
+    for col1 in range(len(mat)):
+        up_to_downs.append(up_to_down(row1, col1, mat))
 
-for a in range(17):
-    for b in range(17):
-        left_to_rights.append(left_to_right(a, b, mat))
+for row2 in range(len(mat)-3):
+    for col2 in range(len(mat)-3):
+        left_to_rights.append(left_to_right(row2, col2, mat))
 
-for g in range(17):
-    for h in range(17):
-        left_to_right_diags.append(left_to_right_diag(g, h, mat))
+for row3 in range(len(mat)-3):
+    for col3 in range(len(mat)-3):
+        left_to_right_diags.append(left_to_right_diag(row3, col3, mat))
 
-for p in range(17):
-    for q in range(3, 20):
-        right_to_left_diags.append(right_to_left_diag(p, q, mat))
+for row4 in range(len(mat)-3):
+    for col4 in range(3, len(mat)):
+        right_to_left_diags.append(right_to_left_diag(row4, col4, mat))
 
 largest_product = max(max(up_to_downs), max(left_to_rights), max(left_to_right_diags), max(right_to_left_diags))
 print(largest_product)

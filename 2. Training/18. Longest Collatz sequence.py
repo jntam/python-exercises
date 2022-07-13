@@ -1,12 +1,12 @@
 def collatz_length(n: int):
-    collatz = []
+    le = 0
     while n != 1:
         if n % 2 == 0:
             n = n // 2
-        elif n % 2 == 1:
+        else:
             n = 3 * n + 1
-        collatz.append(n)
-    return len(collatz)
+        le += 1
+    return le
 
 
 if __name__ == '__main__':
