@@ -1,35 +1,35 @@
-from typing import Iterable
+from typing import List
 
 
-def up_to_down(row: int, col: int, matrix: Iterable[Iterable[int]], number: int):
+def up_to_down(row: int, col: int, matrix: List[List[int]], number: int):
     product = 1
     for i in range(number):
         product *= matrix[row + i][col]
     return product
 
 
-def left_to_right(row: int, col: int, matrix: Iterable[Iterable[int]], number: int):
+def left_to_right(row: int, col: int, matrix: List[List[int]], number: int):
     product = 1
     for i in range(number):
         product *= matrix[row][col + i]
     return product
 
 
-def left_to_right_diag(row: int, col: int, matrix: Iterable[Iterable[int]], number: int):
+def left_to_right_diag(row: int, col: int, matrix: List[List[int]], number: int):
     product = 1
     for i in range(number):
         product *= matrix[row + i][col + i]
     return product
 
 
-def right_to_left_diag(row: int, col: int, matrix: Iterable[Iterable[int]], number: int):
+def right_to_left_diag(row: int, col: int, matrix: List[List[int]], number: int):
     product = 1
     for i in range(number):
         product *= matrix[row + i][col - i]
     return product
 
 
-def largest_product(matrix: Iterable[Iterable[int]], number: int):
+def largest_product(matrix: List[List[int]], number: int):
     up_to_downs = []
     left_to_rights = []
     left_to_right_diags = []
