@@ -23,7 +23,7 @@ def recursive_fibonacci(n: int):
     else:
         sequence = recursive_fibonacci(n - 1)
         sequence.append(sequence[-2] + sequence[-1])
-        return sequence
+    return sequence
 
 
 print(recursive_fibonacci(16))
