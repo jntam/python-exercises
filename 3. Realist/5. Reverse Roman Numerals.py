@@ -23,7 +23,7 @@ def from_roman_numeral(roman_numeral: str):
     value_list: List[int] = []
     roman_list = list(roman_numeral)
     # print(roman_list)
-    for i, letter in enumerate(roman_list):
+    for letter in roman_list:
         value_list.append(value(letter))
 
     for i in range(len(value_list) - 1):
@@ -35,4 +35,3 @@ def from_roman_numeral(roman_numeral: str):
 
 if __name__ == '__main__':
     print(from_roman_numeral("MMMM"))
-
