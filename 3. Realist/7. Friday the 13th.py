@@ -4,9 +4,6 @@ import datetime
 def friday_the_13th():
     today = datetime.date.today()
 
-    if today.weekday() == 4 and today.day == 13:
-        return today.strftime("%Y-%m-%d")
-
     year = today.year
     month = today.month
     day = 13
