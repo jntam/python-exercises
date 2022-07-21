@@ -1,12 +1,14 @@
-import string
 from typing import List
 
 
-def flatten(an_int_list: List[int]):
-    cells = ''.join(w for w in str(an_int_list) if w not in string.punctuation)
-    cells = cells.split()
-    cells = [int(x) for x in cells]
-    return cells
+def flatten(an_int_list: List):
+    flatten_list = []
+    for ele in an_int_list:
+        if isinstance(ele, list):
+            flatten_list.extend(flatten(ele))
+        else:
+            flatten_list.append(ele)
+    return flatten_list
 
 
 if __name__ == "__main__":
