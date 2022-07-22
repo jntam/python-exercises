@@ -10,7 +10,10 @@ class Student:
         self.grades.append(_grade)
 
     def get_mean(self):
-        return mean(self.grades)
+        if len(self.grades) == 0:
+            return 0
+        else:
+            return mean(self.grades)
 
 
 class School:
@@ -22,7 +25,10 @@ class School:
         self.students.append(_student)
 
     def get_mean(self):
-        return sum(x.get_mean() for x in self.students) / len(self.students)
+        if len(self.students) == 0:
+            return 0
+        else:
+            return sum(x.get_mean() for x in self.students) / len(self.students)
 
     def get_best_student(self):
         largest_student_mean = 0
@@ -42,7 +48,10 @@ class City:
         self.schools.append(_school)
 
     def get_mean(self):
-        return sum(x.get_mean() for x in self.schools) / len(self.schools)
+        if len(self.schools) == 0:
+            return 0
+        else:
+            return sum(x.get_mean() for x in self.schools) / len(self.schools)
 
     def get_best_school(self):
         largest_school_mean = 0
